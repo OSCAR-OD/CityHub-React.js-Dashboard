@@ -147,6 +147,8 @@ const dispatch = useDispatch()
             </main>
             <footer>
                 <Link to="/">Back to Home</Link>
+                <Link to="/registration">Sign Up</Link>
+           
             </footer>
         </section>
         </div>

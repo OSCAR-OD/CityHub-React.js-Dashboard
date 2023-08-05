@@ -59,7 +59,7 @@ function App() {
 
       
         <Route path="registration" element={<Registration />} />
-        <Route path="Forgot" element={<Forgot />} />
+        <Route path="forgot" element={<Forgot />} />
         <Route path="resetPassword/:resetToken" element={<ResetPassword />} />
        
         {/* <Route path="MewForm" element={<NultiPageForm />} />
