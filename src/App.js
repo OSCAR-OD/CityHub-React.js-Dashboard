@@ -52,16 +52,13 @@ import ResetPassword from './features/auth/ResetPassword';
 function App() {
   return (
     <Routes>
-       {/* <Route path="/" element={<Layout />}> */}
-       
        <Route path="/" element={<Layout />}>
-
-        {/* public routes */}
+          {/* public routes */}
         <Route index element={<Login />} />
         {/* <Route path="login" element={<Login />} /> */}
 
       
-        <Route path="/registration" element={<Registration />} />
+        <Route path="registration" element={<Registration />} />
         <Route path="Forgot" element={<Forgot />} />
         <Route path="resetPassword/:resetToken" element={<ResetPassword />} />
        
