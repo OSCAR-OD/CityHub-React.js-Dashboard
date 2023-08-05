@@ -1,0 +1,25 @@
+1. err: sometimes 
+    const [userEmailsSelected, setUserEmailsSelected]= useState(note.emails) ashole note.user and id wise save howar kotha. sometimes bknd e short err dhore abar dhore na. but save hoi objectid.(so ignored)(CastError).
+    to correct this, code const updatedNote = await Note.findOneAndUpdate(
+    { _id: id },
+    { $addToSet: { user: user } },
+    { new: true }
+)
+(addToSet)Yes, note.user.addToSet(user) will work instead of $push in this case. The addToSet() method adds an element to an array only if it does not already exist in the array. So, if you want to add a new user to the note.user array without duplicating any existing user, you can use addToSet() method like this:
+//// 
+2 dark bg ok, but footer ektu niche always set thakle valo..(chk)(file 11)(gtchk) 
+3.  ok(12).
+4. (13) token model ok, forgotpass ok, ResetPass ok (tps: sendEmail uncomment and chk again.) (npm i crypto)(bknd: npm i mailgun-js, )
+5. all ok. (single user add/delete in/from team/note done) (sometimes error comes and sometimes not(in notes page.)its ok) (footer adjust). (img upload not done) editProfile is duplicate of editUserForm (manager can edit this)
+6. (15) full code,,, not deleted any part
+7. (16) smll img upload ok but not large image.
+8. npm i react-quill 
+9. (17) all teamPrev is deleted, dashapi is updated(but no work).
+10. (18) v good many changes
+11. (19) v good many changes(print ok)(notification check)
+12. (20) notification ta shobar jonno dakhacche(team e thakle o, ba na thakle o ).(profile thumb,notification dropdown ok )
+13. (21) v gdd
+14. (22) v gdd before EditTeam css
+15. (23) v gddd befor deploy 1 copy
+16. (24) v gddd befor deploy 1 copy
+npm i @fvilers/disable-react-devtools

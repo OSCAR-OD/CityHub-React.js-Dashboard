@@ -1,0 +1,430 @@
+oscar deb
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAddNewNoteMutation } from "./notesApiSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../hooks/useAuth";
+import Modal from 'react-modal';
+import Select from 'react-select';
+
+const NewNoteForm = ({ users }) => {
+    const user = useAuth();
+    const [addNewNote, {
+    isLoading,
+    isSuccess,
+    isError,
+    error
+    }] = useAddNewNoteMutation();
+    const navigate = useNavigate();
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+    const [userIds, setUserIds] = useState([users[0].id]);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    
+    useEffect(() => {
+        if (isSuccess) {
+            setTitle('');
+            setText('');
+            setUserIds([users[0].id]);
+            navigate('/dash/notes');
+        }
+    }, [isSuccess, navigate, users]);
+    
+    const onTitleChanged = e => setTitle(e.target.value);
+    const onTextChanged = e => setText(e.target.value);
+    const onUserIdChanged = selectedOptions => {
+        setUserIds(selectedOptions.map(option => option.value));
+    };
+    const canSave = [title, text, ...userIds].every(Boolean) && !isLoading;
+    
+    const onSaveNoteClicked = async e => {
+        e.preventDefault();
+        if (canSave) {
+            await addNewNote({
+                user: userIds,
+                title,
+                text
+            });
+        }
+    };
+    
+    const options = users.map(user => ({
+        value: user.id,
+        label: user.email
+    }));
+    
+    const errClass = isError ? "errmsg" : "offscreen";
+    const validTitleClass = !title ? "form__input--incomplete" : "";
+    const validTextClass = !text ? "form__input--incomplete" : "";
+    
+    const content = (
+        <>
+            <p className={errClass}>{error?.data?.message}</p>
+    
+            <form className="form" onSubmit={onSaveNoteClicked}>
+                <div className="form__title-row">
+                    <h2>New Note</h2>
+                    <div className="form__action-buttons">
+                        <button
+                            className="icon-button"
+                            title="Save"
+                            disabled={!canSave}
+                        >
+                            <FontAwesomeIcon icon={faSave} />
+                        </button>
+                    </div>
+                </div>
+                <label className="form__label" htmlFor="title">
+                    Title:
+                </label>
+                <input
+                    className={`form__input ${validTitleClass}`}
+                    id="title"
+                    name="title"
+                    type="text"
+                    autoComplete="off"
+                    value={title}
+                    onChange={onTitleChanged}
+                />
+    
+                <label className="form__label" htmlFor="text">
+                    Text:
+                </label>
+                <textarea
+                    className={`form__input form__input--text ${validTextClass}`}
+                    id="text"
+                    name="text"
+                    value={text}
+                    onChange={onTextChanged}
+                />
+    
+                <label className="form__label form__checkbox-container" htmlFor="username">
+                    ASSIGNED TO:
+                </label>
+                <div>
+                    <button onClick={() => setModalIsOpen(true)}>Assign Users</button>
+                    <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                        <Select
+                            isMulti
+                            options={options}
+                            value={userIds.map(id => options.find(option => option.value === id))}
+                            onChange={onUserIdChanged}
+                        />
+                        <button onClick={() => setModalIsOpen(false)}>Done</button>
+                    </Modal>
+                </div>
+            </form>
+        </>
+    );
+    return <div className="note-form">{content}</div>;
+    };
+    
+    export default NewNoteForm;        change the dropdown text color to black
+
+To change the dropdown text color to black, you can add the following CSS style to the Select component:
+
+css
+Copy code
+<Select
+  isMulti
+  options={options}
+  value={userIds.map(id => options.find(option => option.value === id))}
+  onChange={onUserIdChanged}
+  styles={{
+    option: (provided, state) => ({
+      ...provided,
+      color: 'black'
+    }),
+    multiValueLabel: (provided) => ({
+      ...provided,
+      color: 'black'
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: 'black'
+    })
+  }}
+/>
+This will override the default styles for the dropdown options, multi-value label, and single-value selection, setting their text color to black.
+
+
+
+
+oscar deb
+change the dropdown text color to black with external css
+
+To change the dropdown text color to black using external CSS, you can add the following styles to your stylesheet:
+
+css
+Copy code
+.Select__option {
+  color: black;
+}
+
+.Select__multi-value__label {
+  color: black;
+}
+
+.Select__single-value {
+  color: black;
+}
+This will set the text color for the dropdown options, multi-value label, and single-value selection to black. Make sure to replace Select with the appropriate classname for your Select component, as the classname may differ depending on the library or version being used.
+
+
+
+
+oscar deb
+where to add this classes in code?
+
+To add the classes to your code, you can add them to an external CSS file and import it into your component. Here's an example of how to do this:
+
+Create a new file called newNoteFormStyles.css in the same directory as your NewNoteForm component.
+
+Add the following CSS styles to the newNoteFormStyles.css file:
+
+css
+Copy code
+.Select__option {
+  color: black;
+}
+
+.Select__multi-value__label {
+  color: black;
+}
+
+.Select__single-value {
+  color: black;
+}
+In your NewNoteForm component, import the newNoteFormStyles.css file:
+arduino
+Copy code
+import './newNoteFormStyles.css';
+Use the Select component with the appropriate classname and the styles defined in the CSS file:
+php
+Copy code
+<Select
+  className="Select"
+  options={options}
+  value={userIds.map(id => options.find(option => option.value === id))}
+  onChange={onUserIdChanged}
+/>
+This will apply the styles defined in the newNoteFormStyles.css file to the Select component.
+
+
+
+
+oscar deb
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAddNewNoteMutation } from "./notesApiSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../hooks/useAuth";
+import Modal from 'react-modal';
+import Select from 'react-select';
+
+const NewNoteForm = ({ users }) => {
+    const user = useAuth();
+    const [addNewNote, {
+    isLoading,
+    isSuccess,
+    isError,
+    error
+    }] = useAddNewNoteMutation();
+    const navigate = useNavigate();
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+    const [userIds, setUserIds] = useState([users[0].id]);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    
+    useEffect(() => {
+        if (isSuccess) {
+            setTitle('');
+            setText('');
+            setUserIds([users[0].id]);
+            navigate('/dash/notes');
+        }
+    }, [isSuccess, navigate, users]);
+    
+    const onTitleChanged = e => setTitle(e.target.value);
+    const onTextChanged = e => setText(e.target.value);
+    const onUserIdChanged = selectedOptions => {
+        setUserIds(selectedOptions.map(option => option.value));
+    };
+    const canSave = [title, text, ...userIds].every(Boolean) && !isLoading;
+    
+    const onSaveNoteClicked = async e => {
+        e.preventDefault();
+        if (canSave) {
+            await addNewNote({
+                user: userIds,
+                title,
+                text
+            });
+        }
+    };
+    
+    const options = users.map(user => ({
+        value: user.id,
+        label: user.email
+    }));
+    
+    const errClass = isError ? "errmsg" : "offscreen";
+    const validTitleClass = !title ? "form__input--incomplete" : "";
+    const validTextClass = !text ? "form__input--incomplete" : "";
+    
+    const content = (
+        <>
+            <p className={errClass}>{error?.data?.message}</p>
+    
+            <form className="form" onSubmit={onSaveNoteClicked}>
+                <div className="form__title-row">
+                    <h2>New Note</h2>
+                    <div className="form__action-buttons">
+                        <button
+                            className="icon-button"
+                            title="Save"
+                            disabled={!canSave}
+                        >
+                            <FontAwesomeIcon icon={faSave} />
+                        </button>
+                    </div>
+                </div>
+                <label className="form__label" htmlFor="title">
+                    Title:
+                </label>
+                <input
+                    className={`form__input ${validTitleClass}`}
+                    id="title"
+                    name="title"
+                    type="text"
+                    autoComplete="off"
+                    value={title}
+                    onChange={onTitleChanged}
+                />
+    
+                <label className="form__label" htmlFor="text">
+                    Text:
+                </label>
+                <textarea
+                    className={`form__input form__input--text ${validTextClass}`}
+                    id="text"
+                    name="text"
+                    value={text}
+                    onChange={onTextChanged}
+                />
+    
+                <label className="form__label form__checkbox-container" htmlFor="username">
+                    ASSIGNED TO:
+                </label>
+                <div>
+                    <button onClick={() => setModalIsOpen(true)}>Assign Users</button>
+                    <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                        <Select className="Select" 
+                            isMulti
+                            options={options}
+                            value={userIds.map(id => options.find(option => option.value === id))}
+                            onChange={onUserIdChanged}
+                        />
+                        <button onClick={() => setModalIsOpen(false)}>Done</button>
+                    </Modal>
+                </div>
+            </form>
+        </>
+    );
+    return <div className="note-form">{content}</div>;
+    };
+    
+    export default NewNoteForm;         analyze this code and change the text color to black after selecting any value from dropdown of this modal
+
+To change the text color to black after selecting any value from the dropdown of this modal, you can add the following CSS code in your external CSS file or in your <head> tag:
+
+css
+Copy code
+.Select__control--is-focused,
+.Select__control--menu-is-open,
+.Select__single-value {
+  color: black !important;
+}
+This code targets the Select__control--is-focused, Select__control--menu-is-open, and Select__single-value classes, which are used by the react-select library to style the dropdown and selected value components. The !important flag is used to override any existing styles that might be applied to these classes.
+
+Make sure to import your external CSS file in your React component or add the styles in your existing CSS file.
+
+
+
+
+oscar deb
+menu dropdown color or listbox color is not changing to black
+
+In that case, you may need to add a more specific CSS selector to target the dropdown or listbox specifically. Here is an example of how you can change the text color to black for the dropdown menu options:
+
+CSS
+Copy code
+.Select__option {
+  color: black !important;
+}
+This should target the options inside the dropdown menu and change their text color to black. You can add this CSS code in your external CSS file or in the style section of your component.
+
+
+
+
+oscar deb
+what class i need to add in html code?
+
+In your HTML code, you don't need to add any specific class. You just need to update the existing CSS classes that are applied to the Select component in your React code.
+
+Based on the changes you made, you can update the Select component in your code to include a className prop with the value of select-black as follows:
+
+php
+Copy code
+<Select 
+  className="select-black" 
+  isMulti 
+  options={options} 
+  value={userIds.map(id => options.find(option => option.value === id))} 
+  onChange={onUserIdChanged} 
+/>
+Then, in your external CSS file, you can define the .select-black class to change the color of the Select component and its dropdown items to black:
+
+css
+Copy code
+.select-black {
+  color: black;
+}
+
+.select-black .select__control,
+.select-black .select__menu,
+.select-black .select__option {
+  background-color: white;
+  color: black;
+}
+This should change the text color of the Select component to black and also change the background color of the dropdown items to white with black text.
+
+
+
+
+
+Regenerate response
+Send a message...
+
+ChatGPT Mar 14 Version. Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.
+New chat
+React Dropdown Text Color.
+
+
+React Modal for User Selection.
+Bangla Romantic Song.
+Multiple User ID Selection.
+GraphQL Query for Teams.
+Multiple User ID Selection.
+Camera data to blockchain
+Express.js findByEmail Example
+Templates
+Clear conversations
+Upgrade to Plus
+NEW
+Light mode
+Updates & FAQ
+Log out
+Pls Continue

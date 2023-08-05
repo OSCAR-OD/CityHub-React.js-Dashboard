@@ -1,0 +1,170 @@
+.form-home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+ 
+  .progress-bar {
+    width: calc(100% - 20px);
+    /* width: 100%; */
+    height: 13px;
+    background-color: #393636;
+    border-radius: 5px;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    width: 0;
+    background-color: green;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+  }
+  /* //for card// */
+  .formdetails {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    /* margin-top: 10px; */
+  }
+  
+  .formdetails .formGeneralInfo {
+    position: relative;
+    /* display: grid; */
+    /* 500px */
+   min-height: 50px; 
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+  
+  .formdetails .formCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .formCardHeader h2 {
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .formCardHeader .btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+  }
+  
+  .formdetails table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  .formdetails table thead td {
+    font-weight: 600;
+  }
+  .formdetails .formGeneralInfo table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .formdetails .formGeneralInfo table tr:last-child {
+    border-bottom: none;
+  }
+  .formdetails .formGeneralInfo table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .formdetails .formGeneralInfo table tr td {
+    padding: 10px;
+  }
+  .formdetails .formGeneralInfo table tr td:last-child {
+    text-align: end;
+  }
+  .formdetails .formGeneralInfo table tr td:nth-child(2) {
+    text-align: end;
+  }
+  .formdetails .formGeneralInfo table tr td:nth-child(3) {
+    text-align: center;
+  }
+  .status.delivered {
+    padding: 2px 4px;
+    background: #8de02c;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+ 
+  /* //oscar code// */
+
+  .formdetails .formCartInfo {
+    position: relative;
+    /* display: grid; */
+    /* 500px */
+   min-height: 500px; 
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+  .formdetails .formCartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .formCartHeader h2 {
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .formCartHeader .btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+  }
+
+
+/* //oscar code// */
+
+.formdetails .formGeneralInfo table tr td p {
+  text-align: left;
+}
+team-created{
+  padding-left: 10px;
+}
+@media (max-width: 768px) {
+  .form-home {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+    .formdetails {
+      grid-template-columns: 1fr;
+    }
+    .formGeneralInfo {
+      overflow-x: auto;
+    }
+    .status.inProgress {
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .formCardHeader h2 {
+    font-size: 20px;
+  }
+  }
+
+  /* //oscar new code// */
+  /* { font-family : 'Nunito', 'sans-serif';
+    font-size: 22px;
+    padding: 0.25rem; 
+    border-radius: 0.5rem;
+} */
