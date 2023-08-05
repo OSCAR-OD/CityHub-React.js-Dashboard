@@ -11,17 +11,18 @@ const User = ({ userId }) => {
     const navigate = useNavigate()
 
     if (user) {
-        const handleEdit = () => navigate(`/dash/users/${userId}`)
+        console.log(user)
+         const handleEdit = () => navigate(`/dash/users/${userId}`)
 
-        const userRolesString = user.roles.toString().replaceAll(',', ', ')
+        const userRolesString = user.roles.toString().replaceAll(',')
 
         const cellStatus = user.active ? '' : 'table__cell--inactive'
 
         return (
             <>
-          
            <tr className="table__row user">
                 <td className={`table__cell ${cellStatus}`}>{user.name}</td>
+                <td className={`table__cell ${cellStatus}`}>{user.email}</td>
                 <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
                 <td className={`table__cell ${cellStatus}`}>
                     <button

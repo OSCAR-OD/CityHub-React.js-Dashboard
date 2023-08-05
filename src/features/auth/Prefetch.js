@@ -1,5 +1,5 @@
 import { store } from '../../app/store'
-import { notesApiSlice } from '../notes/notesApiSlice'
+//import { notesApiSlice } from '../notes/notesApiSlice'
 import { employeesApiSlice } from '../employees/employeesApiSlice'
 import { usersApiSlice } from '../users/usersApiSlice';
 import { teamsApiSlice } from '../teams/teamsApiSlice';
@@ -11,8 +11,8 @@ import { Outlet } from 'react-router-dom';
 
 const Prefetch = () => {
     useEffect(() => {
-        console.log('subscribing')
-        const notes = store.dispatch(notesApiSlice.endpoints.getNotes.initiate())
+       // console.log('subscribing')
+       // const notes = store.dispatch(notesApiSlice.endpoints.getNotes.initiate())
         //const users = store.dispatch(usersApiSlice.endpoints.getUsers.initiate())
         const users = store.dispatch(usersApiSlice.endpoints.getProfile.initiate())
         const employees = store.dispatch(employeesApiSlice.endpoints.getEmployees.initiate())
@@ -22,7 +22,7 @@ const Prefetch = () => {
        
         
         return () => {
-            notes.unsubscribe()
+        //    notes.unsubscribe()
             users.unsubscribe()
             employees.unsubscribe()
             teams.unsubscribe()

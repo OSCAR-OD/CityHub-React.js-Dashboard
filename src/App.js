@@ -76,11 +76,16 @@ function App() {
 
                <Route index element={<Dashboard />} />
                 <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
-                  <Route path="manager">
-                    <Route index element={<UsersList />} />
-                    <Route path=":id" element={<EditUser />} />
-                    <Route path="addUser" element={<NewUserForm />} />
+                <Route path="manager">
+                    {/* <Route index element={<UsersList />} />
+                    */}
+                    {/* <Route path=":id" element={<EditUser />} />
+                    <Route path="addUser" element={<NewUserForm />} /> */}
+                  {/* <Route index element={<NewTeam />} />
+                   */}
                     <Route path="addTeam" element={<NewTeam />} />
+                    <Route path="usersList" element={<UsersList />} />
+                   
                    </Route>
                 </Route>
                 {/* employee */}
@@ -88,8 +93,9 @@ function App() {
                   <Route path="employees">
                     <Route index element={<EmployeesList />} />
                     <Route path=":id" element={<EditEmployee />} />
-                    <Route path="new" element={<NewEmployeeForm />} />
-                  </Route>
+                    <Route path="newemployee" element={<NewEmployeeForm />} />
+               </Route>
+
                 </Route>
 
              
@@ -100,6 +106,7 @@ function App() {
                   <Route index element={<TeamsList />} />
                   <Route path=":id" element={<EditTeam />} />
                 <Route path="noticeList" element={<NoticeList />} /> 
+                
                  </Route>
                  
                  <Route path="notices">
@@ -107,12 +114,12 @@ function App() {
                  <Route path=":id" element={<EditNotice />} />
                  
                  </Route>
+
                  <Route path="posts">
                  <Route path="createPost" element={<CreatePost />} /> 
                  {/* <Route path=":id" element={<EditNotice />} />
                   */}
                  </Route>
-                 
               
                 <Route path="forms">
                 <Route index element={<FormHome />} />
@@ -123,6 +130,9 @@ function App() {
             
                 
                   </Route> 
+
+                  
+
               </Route>{/* End Dash */}
             </Route>
       

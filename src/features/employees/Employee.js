@@ -22,6 +22,7 @@ const Employee = ({ employeeId }) => {
           
            <tr className="table__row employee">
                 <td className={`table__cell ${cellStatus}`}>{employee.name}</td>
+                <td className={`table__cell ${cellStatus}`}>{employee.email}</td>
                 <td className={`table__cell ${cellStatus}`}>{employeeRolesString}</td>
                 <td className={`table__cell ${cellStatus}`}>
                     <button

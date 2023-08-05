@@ -1,3 +1,4 @@
+// import { Link } from 'react-router-dom'
 import { useGetTeamsQuery } from "./teamsApiSlice"
 import Team from "./Team"
 import useAuth from "../../hooks/useAuth"
@@ -42,6 +43,9 @@ const TeamsList = () => {
         const tableContent = ids?.length && filteredIds.map(teamId => <Team key={teamId} teamId={teamId} />)
 
         content = (
+            // <section className="welcome">
+            // {(isManager || isAdmin) &&<p><Link to="/dash/teams/addteam">Add New Team</Link></p>}
+           
             <table className="table table--teams">
                 <thead className="table__thead">
                     <tr>
@@ -57,6 +61,7 @@ const TeamsList = () => {
                     {tableContent}
                 </tbody>
             </table>
+            // </section>
         )
     }
 

@@ -34,6 +34,7 @@ const EmployeesList = () => {
                 <thead className="table__thead">
                     <tr>
                         <th scope="col" className="table__th employee__employeename">Employeename</th>
+                        <th scope="col" className="table__th employee__employeename">Email</th>
                         <th scope="col" className="table__th employee__roles">Roles</th>
                         <th scope="col" className="table__th employee__edit">Edit</th>
                     </tr>
