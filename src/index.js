@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'
 import ThemeProvider from './features/auth/ThemeProvider'
 import {disableReactDevTools } from '@fvilers/disable-react-devtools';
 
-if (ProcessingInstruction.env.NODE_ENV === 'production') disableReactDevTools()
+if (process.env.NODE_ENV === 'production') disableReactDevTools()
 // document.body.className = "overlay-scrollbar"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
