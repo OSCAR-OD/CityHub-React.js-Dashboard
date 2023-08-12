@@ -106,7 +106,7 @@ const Register = () => {
     }
     
  const content = (
-    <div className="Appk">
+    <div className="Appk bgcolor">
           <section className="Appk-section">
 
    {/* <section className="public"> */}

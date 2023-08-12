@@ -82,7 +82,7 @@ const dispatch = useDispatch()
     if (isLoading) return <p>Loading...</p>
 
     const content = (
-        <div className="Appk">
+        <div className="Appk bgcolor">
         {/* <section>
              */}
         <section className="Appk-section">
@@ -93,7 +93,13 @@ const dispatch = useDispatch()
             </header>
             <main classemail="login">
                 <p ref={errRef} classemail={errClass} aria-live="assertive">{errMsg}</p>
-
+                <p>
+                    Manager:pdo@employee.cityhub.com
+                <br/>
+                password:12345678Aa@
+                <br/>
+                You can signup also.
+                </p>
                 <form className="Appk-form" onSubmit={handleSubmit}>
                     <label htmlFor="email">email:</label>
                 <input
@@ -141,15 +147,19 @@ const dispatch = useDispatch()
                             onChange={handleToggle}
                             checked={persist}
                         />
-                        Trust This Device
+                        Trust This Device( Login for a single time. )
                     </label>
                 </form>
+                 
             </main>
-            <footer>
-                <Link to="/">Back to Home</Link>
-                <Link to="/registration">Sign Up</Link>
-           
+            <footer className= "footer" >
+                <Link to="/" className="footer-link" >Back to Home</Link>
+                <Link to="/registration" className="footer-link" >Sign Up</Link>
             </footer>
+            {/* <footer classsName= "footer" >
+                <Link to="/" className="footer-link" >Back to Home</Link>
+                <Link to="/registration" className="footer-link" >Sign Up</Link>
+            </footer> */}
         </section>
         </div>
     )

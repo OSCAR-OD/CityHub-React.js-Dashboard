@@ -1,5 +1,5 @@
 .Appk {
-    display: flex;
+     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -7,20 +7,28 @@
     padding: 1rem 0.5rem;
   
   }
+.bgcolor{
+  background: linear-gradient(120deg,#2980b9, #8e44ad);
   
+}
   .Appk-section {
       width: 100%;
-      max-width: 420px;
+      max-width: 380px;
       min-height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       padding: 1rem;
-      background-color: rgb(201, 192, 191);
+      background-color: rgb(238, 238, 238);
       border-radius: 0.5rem;
   
     }
     
+    .Appk-section h1{
+      text-align: center;
+      padding: 2px 0;
+      border-bottom: 1px solid silver;
+    }
     .Appk-form {
     display: flex;
     flex-direction: column;
